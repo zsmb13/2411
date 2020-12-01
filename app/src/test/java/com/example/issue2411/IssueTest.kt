@@ -4,6 +4,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.yield
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,8 +16,10 @@ class IssueTest {
     val testCoroutineRule = TestCoroutineRule()
 
     @Test
-    fun `test`() = runBlockingTest {
+    fun `test`() = testCoroutineRule.scope.runBlockingTest {
         DataController().let { controller ->
+            yield()
+
             // we're using a test coroutine dispatcher
             Truth.assertThat(controller.dispatcher)
                 .isInstanceOf(TestCoroutineDispatcher::class.java)

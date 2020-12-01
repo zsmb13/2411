@@ -12,43 +12,29 @@
         android:layout_height="wrap_content"
         android:text="--"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/increment_button"
+        app:layout_constraintBottom_toTopOf="@+id/increment_button_a"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/increment_button"
+        android:id="@+id/increment_button_a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+"
-        app:layout_constraintBottom_toTopOf="@+id/add_string_button"
+        android:text="A++"
+        app:layout_constraintBottom_toTopOf="@+id/increment_button_b"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/combined_count_label" />
 
-    <EditText
-        android:id="@+id/string_edit_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/add_string_button"
-        app:layout_constraintEnd_toStartOf="@+id/add_string_button"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/add_string_button" />
-
     <Button
-        android:id="@+id/add_string_button"
+        android:id="@+id/increment_button_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ADD"
+        android:text="B++"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/string_edit_text"
-        app:layout_constraintTop_toBottomOf="@+id/increment_button" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/increment_button_a" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

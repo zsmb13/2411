@@ -3,11 +3,15 @@ package com.example.issue2411
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.issue2411.databinding.ActivityMainBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private val dataController: DataController = DataController()
+    private val dataController: DataController = DataController(Dispatchers.Main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,17 +19,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
-            dataController.combinedLiveData.observe(this@MainActivity) {
-                combinedCountLabel.text = it.toString()
+            // Shouldn't use GlobalScope in real app
+            GlobalScope.launch(Dispatchers.Main) {
+                dataController.combinedFlow.collectLatest {
+                    combinedCountLabel.text = it.toString()
+                }
             }
 
-            incrementButton.setOnClickListener {
-                dataController.incrementInt()
+            incrementButtonA.setOnClickListener {
+                dataController.incrementA()
             }
-
-            addStringButton.setOnClickListener {
-                dataController.upsertString(stringEditText.text.toString())
-                stringEditText.text.clear()
+            incrementButtonB.setOnClickListener {
+                dataController.incrementB()
             }
         }
     }
